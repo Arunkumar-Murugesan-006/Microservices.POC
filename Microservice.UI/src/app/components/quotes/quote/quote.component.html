@@ -1,0 +1,38 @@
+<mat-toolbar class="top-menu">
+    <span>Quote Details</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<form [formGroup]="_service.form" class="normal-form">
+<mat-grid-list cols="1" rowHeight="400px">
+    <mat-grid-tile>
+        <div class="controles-container">
+            <input type="hidden" formControlName="quoteId">
+            <mat-form-field>
+                <input formControlName="origin" matInput placeholder="Origin *" autocomplete="off">
+                <mat-error>This field is mandatory.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="destination" matInput placeholder="Destination *" autocomplete="off">
+                <mat-error>This field is mandatory.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="containerType" matInput placeholder="Container Type *" autocomplete="off">
+                <mat-error>This field is mandatory.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="quotePrice" matInput placeholder="Quote Price" autocomplete="off">
+            </mat-form-field>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="_service.form.invalid">Submit</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    </div>
+</mat-toolbar>
+</form>

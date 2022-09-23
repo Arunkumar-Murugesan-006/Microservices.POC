@@ -1,0 +1,62 @@
+<mat-toolbar class="top-menu">
+    <span>Quote List</span>
+</mat-toolbar>
+<div style="margin: 10px;" class="search-div">
+    <button mat-raised-button (click)="onCreate()" color="accent">
+        <mat-icon>add</mat-icon>Create
+    </button>
+</div>
+<div style="margin: 10px;" class="mat-elevation-z5">
+    <mat-table [dataSource]="grdlistData">
+        <ng-container matColumnDef="quoteId">
+            <mat-header-cell *matHeaderCellDef>Quote ID</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.quoteId }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="origin">
+            <mat-header-cell *matHeaderCellDef>Origin</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.origin }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="destination">
+            <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.destination }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="containerType">
+            <mat-header-cell *matHeaderCellDef>Container Type</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.containerType }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quotePrice">
+            <mat-header-cell *matHeaderCellDef>Quote Price</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.quotePrice }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" title="Delete" (click)="onDelete(row.id)">
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="4">
+                Loading data...
+            </mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="4">
+                No data.
+            </mat-footer-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" 
+            [ngClass]="{'hide':grdlistData!=null}">
+        </mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" 
+            [ngClass]="{'hide':!(grdlistData!=null && grdlistData.data.length==0)}">
+        </mat-footer-row>
+    </mat-table>
+</div>

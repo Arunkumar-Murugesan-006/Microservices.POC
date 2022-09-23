@@ -1,0 +1,12 @@
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\bin\Debug\net6.0\Event.Hubs.deps.json
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\bin\Debug\net6.0\Event.Hubs.dll
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\bin\Debug\net6.0\Event.Hubs.pdb
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.csproj.AssemblyReference.cache
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.AssemblyInfoInputs.cache
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.AssemblyInfo.cs
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.csproj.CoreCompileInputs.cache
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.dll
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\refint\Event.Hubs.dll
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\Event.Hubs.pdb
+C:\Users\AKM058\Documents\GitHub\AKM_Repository\POC\Microservices.POC\Microservice.Event.Hubs\obj\Debug\net6.0\ref\Event.Hubs.dll
