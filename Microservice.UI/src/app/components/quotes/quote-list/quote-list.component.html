@@ -1,31 +1,37 @@
 <mat-toolbar class="top-menu">
     <span>Quote List</span>
 </mat-toolbar>
-<div style="margin: 10px;" class="search-div">
+<div class="search-div">
     <button mat-raised-button (click)="onCreate()" color="accent">
         <mat-icon>add</mat-icon>Create
     </button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput [(ngModel)] = "searchKey" placeholder = "Search" autocomplete = "off" (keyup) = "applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label = "Clear" *ngIf = "searchKey" (click) = "onSearchClear()">
+            <mat-icon>Close</mat-icon>
+        </button>
+    </mat-form-field>
 </div>
 <div style="margin: 10px;" class="mat-elevation-z5">
-    <mat-table [dataSource]="grdlistData">
+    <mat-table [dataSource]="grdlistData" matSort>
         <ng-container matColumnDef="quoteId">
-            <mat-header-cell *matHeaderCellDef>Quote ID</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quote ID</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.quoteId }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="origin">
-            <mat-header-cell *matHeaderCellDef>Origin</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Origin</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.origin }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="destination">
-            <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Destination</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.destination }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="containerType">
-            <mat-header-cell *matHeaderCellDef>Container Type</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Container Type</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.containerType }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="quotePrice">
-            <mat-header-cell *matHeaderCellDef>Quote Price</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quote Price</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.quotePrice }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">
@@ -59,4 +65,5 @@
             [ngClass]="{'hide':!(grdlistData!=null && grdlistData.data.length==0)}">
         </mat-footer-row>
     </mat-table>
+    <mat-paginator [pageSizeOptions] = "[2, 5, 10, 25, 100]" [pageSize] = "10" showFirstLastButtons></mat-paginator>
 </div>

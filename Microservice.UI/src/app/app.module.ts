@@ -14,7 +14,7 @@ import { QuoteListComponent } from './components/quotes/quote-list/quote-list.co
 import { ProductService } from './services/product/product.service';
 import { QuoteService } from './services/quote/quote.service';
 import { NotificationService } from './services/notification/notification.service';
-
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { NotificationService } from './services/notification/notification.servic
     ProductListComponent,
     ProductComponent,
     QuoteListComponent,
-    QuoteComponent
+    QuoteComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +36,6 @@ import { NotificationService } from './services/notification/notification.servic
   ],
   providers: [ProductService, QuoteService, NotificationService],
   bootstrap: [AppComponent],
-  entryComponents: [ProductComponent]
+  entryComponents: [ProductComponent, QuoteComponent, MatConfirmDialogComponent]
 })
 export class AppModule { }

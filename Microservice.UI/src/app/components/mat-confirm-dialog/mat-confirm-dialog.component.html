@@ -1,0 +1,12 @@
+<h5>
+    <b>Are You Sure?</b>
+</h5>
+<mat-dialog-content>
+<p>
+    {{ data.message }}
+</p>
+</mat-dialog-content>
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button id="yes-button" [mat-dialog-close] = "false" tabindex="-1">Yes</button>
+    <button mat-raised-button mat-dialog-close id="no-button" color="primary">No</button>
+  </div>

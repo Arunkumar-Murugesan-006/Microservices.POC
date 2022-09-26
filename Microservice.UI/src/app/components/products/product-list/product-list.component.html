@@ -1,35 +1,41 @@
 <mat-toolbar class="top-menu">
     <span>Product List</span>
 </mat-toolbar>
-<div style="margin: 10px;" class="search-div">
+<div class="search-div">
     <button mat-raised-button (click)="onCreate()" color="accent">
         <mat-icon>add</mat-icon>Create
     </button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput [(ngModel)] = "searchKey" placeholder = "Search" autocomplete = "off" (keyup) = "applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label = "Clear" *ngIf = "searchKey" (click) = "onSearchClear()">
+            <mat-icon>Close</mat-icon>
+        </button>
+    </mat-form-field>
 </div>
 <div style="margin: 10px;" class="mat-elevation-z5">
-    <mat-table [dataSource]="grdlistData">
+    <mat-table [dataSource]="grdlistData" matSort>
         <ng-container matColumnDef="productId">
-            <mat-header-cell *matHeaderCellDef>Product ID</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Product ID</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.productId }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="origin">
-            <mat-header-cell *matHeaderCellDef>Origin</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Origin</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.origin }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="destination">
-            <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Destination</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.destination }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="containerType">
-            <mat-header-cell *matHeaderCellDef>Container Type</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Container Type</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.containerType }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.price }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="volume">
-            <mat-header-cell *matHeaderCellDef>Volume</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Volume</mat-header-cell>
             <mat-cell *matCellDef="let item">{{ item.volume }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">
@@ -38,7 +44,7 @@
                 <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="accent" title="Delete" (click)="onDelete(row.id)">
+                <button mat-icon-button color="accent" title="Delete" (click)="onDelete(row.productId)">
                     <mat-icon>delete_forever</mat-icon>
                 </button>
             </mat-cell>
@@ -62,4 +68,5 @@
             [ngClass]="{'hide':!(grdlistData!=null && grdlistData.data.length==0)}">
         </mat-footer-row>
     </mat-table>
+    <mat-paginator [pageSizeOptions] = "[2, 5, 10, 25, 100]" [pageSize] = "10" showFirstLastButtons></mat-paginator>
 </div>

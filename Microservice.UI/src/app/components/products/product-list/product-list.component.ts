@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ProductComponent } from '../product/product.component';
@@ -12,7 +15,10 @@ import { ProductComponent } from '../product/product.component';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private _service: ProductService, public _notification: NotificationService, public _dialog: MatDialog) 
+  constructor(private _service: ProductService, 
+              public _notification: NotificationService, 
+              public _dialog: MatDialog,
+              private _dialogService: DialogService) 
   {
     this._service.listen().subscribe((m: any) => 
     {
@@ -21,7 +27,10 @@ export class ProductListComponent implements OnInit {
   }
 
   grdlistData!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['origin','destination','containerType','price','volume','actions']
+  displayedColumns: string[] = ['productId','origin','destination','containerType','price','volume','actions']
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  searchKey! : string;
 
   ngOnInit(): void 
   {
@@ -35,8 +44,19 @@ export class ProductListComponent implements OnInit {
         data => 
         {
           this.grdlistData = new MatTableDataSource(data);
+          this.grdlistData.sort = this.sort;
+          this.grdlistData.paginator = this.paginator;
         }
       );
+  }
+  applyFilter()
+  {
+    this.grdlistData.filter = this.searchKey.trim().toLowerCase();
+  }
+  onSearchClear()
+  {
+    this.searchKey = "";
+    this.applyFilter();
   }
   onCreate()
   {
@@ -58,17 +78,23 @@ export class ProductListComponent implements OnInit {
     this._dialog.open(ProductComponent, dialogConfig);
     this._notification.success("You clicked edit!");
   }
-
   onDelete(id: any)
   {
-    this._service.deleteProduct(id)
-      .subscribe(
-        data => 
+    this._dialogService.openConfirmDialog('Do you want to delete this record ' + id + ' ?')
+      .afterClosed().subscribe(res => 
         {
-          this._notification.warn("Record Deleted Successfully!!");
-          this._service.filter('');
-        }
-      )
+          if(res)
+          {
+            this._service.deleteProduct(id)
+            .subscribe(
+              data => 
+              {
+                this._notification.warn("Record Deleted Successfully!!");
+                this._service.filter('');
+              }
+            )
+          }
+        })
+    
   }
-
 }

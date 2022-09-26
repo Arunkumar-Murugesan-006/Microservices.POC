@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { QuoteService } from 'src/app/services/quote/quote.service';
@@ -22,6 +24,9 @@ export class QuoteListComponent implements OnInit {
 
   grdlistData!: MatTableDataSource<any>;
   displayedColumns: string[] = ['origin','destination','containerType','quotePrice']
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  searchKey! : string;
 
   ngOnInit(): void 
   {
@@ -34,8 +39,19 @@ export class QuoteListComponent implements OnInit {
         data => 
         {
           this.grdlistData = new MatTableDataSource(data);
+          this.grdlistData.sort = this.sort;
+          this.grdlistData.paginator = this.paginator;
         }
       );
+  }
+  applyFilter()
+  {
+    this.grdlistData.filter = this.searchKey.trim().toLowerCase();
+  }
+  onSearchClear()
+  {
+    this.searchKey = "";
+    this.applyFilter();
   }
   onCreate()
   {
